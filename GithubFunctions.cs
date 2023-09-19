@@ -18,7 +18,7 @@ namespace GithubStatApi
 
         [FunctionName("GetGithubData")]
         public IActionResult GetGithubData(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req, ILogger log,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req, ILogger log,
             [Blob("github-data/current", FileAccess.Read, Connection = "AzureBlobStorageConnectionString")] Stream blobStream)
         {
             StreamReader reader = new StreamReader(blobStream);
