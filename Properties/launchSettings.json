@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GitHubStatApi": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7262",
+      "launchBrowser": false
+    }
+  }
+}
