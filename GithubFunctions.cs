@@ -1,16 +1,14 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using GithubStatApi.models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Net.Http;
-using GithubStatApi.models;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace GithubStatApi
 {
@@ -30,7 +28,7 @@ namespace GithubStatApi
         }
 
         [FunctionName("UpdateGithubData")]
-        public async Task UpdateGithubData([TimerTrigger("0 0 0 * * *", RunOnStartup = true)] TimerInfo myTimer, ILogger log,
+        public async Task UpdateGithubData([TimerTrigger("0 0 0 * * *", RunOnStartup = false)] TimerInfo myTimer, ILogger log,
             [Blob("github-data/current", FileAccess.Write, Connection = "AzureBlobStorageConnectionString")] Stream blobStream)
         {
             _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("PostmanRuntime/7.32.3");
@@ -70,4 +68,3 @@ namespace GithubStatApi
         }
     }
 }
-
